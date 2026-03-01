@@ -1,4 +1,3 @@
-%%writefile app.py
 import streamlit as st
 
 st.set_page_config(
@@ -149,56 +148,7 @@ st.markdown("""
 
 st.markdown("---")
 
-# ===== OPEN IN NEW TAB BUTTON =====
-# This is the most reliable way - open the widget in a new browser tab
-st.markdown(f"""
-<div style="text-align:center; margin: 20px 0 30px;">
-    <p style="color:rgba(255,255,255,0.4); font-family:'Tajawal',sans-serif; font-size:0.9em; margin-bottom:16px;">
-        🎙️ للتحدث مع الأجنت أو الكتابة له — اضغط الزر أدناه
-    </p>
-    <a href="https://elevenlabs.io/app/talk-with-agent/{AGENT_ID}"
-       target="_blank"
-       style="
-           display: inline-flex;
-           align-items: center;
-           gap: 10px;
-           background: linear-gradient(135deg, #ff3c64, #ff6b42);
-           color: white;
-           padding: 16px 36px;
-           border-radius: 100px;
-           font-family: 'Syne', sans-serif;
-           font-size: 1em;
-           font-weight: 700;
-           text-decoration: none;
-           box-shadow: 0 8px 30px rgba(255,60,100,0.4);
-           transition: all 0.3s;
-           letter-spacing: 0.5px;
-       ">
-        🤖 Start Talking to the Agent | ابدأ المحادثة
-    </a>
-    <p style="color:rgba(255,255,255,0.2); font-size:0.75em; margin-top:12px; font-family:'Tajawal',sans-serif;">
-        سيفتح في نافذة جديدة · Opens in a new tab
-    </p>
-</div>
-""", unsafe_allow_html=True)
-
-# ===== EMBEDDED WIDGET (with fallback) =====
-st.markdown("""
-<div style="
-    background:rgba(255,255,255,0.02);
-    border:1px solid rgba(255,255,255,0.07);
-    border-radius:24px;
-    padding:30px 20px;
-    text-align:center;
-    margin:10px 0 20px;
-    position:relative;
-    overflow:hidden;
-">
-<p style="color:rgba(255,255,255,0.3); font-size:0.8em; font-family:'Tajawal',sans-serif; margin-bottom:20px;">
-    أو تفاعل مع الأجنت هنا مباشرةً ↓
-</p>
-""", unsafe_allow_html=True)
-
+# ===== WIDGET =====
 widget_html = f"""
 <!DOCTYPE html>
 <html>
@@ -207,12 +157,12 @@ widget_html = f"""
 <style>
   body {{
     margin: 0;
-    padding: 0;
+    padding: 20px 0;
     background: transparent;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    min-height: 500px;
+    min-height: 520px;
   }}
   elevenlabs-convai {{
     width: 100%;
@@ -228,25 +178,19 @@ widget_html = f"""
   <script src="https://elevenlabs.io/convai-widget/index.js" async></script>
   <script>
     window.addEventListener('load', function() {{
-      setTimeout(function() {{
-        var w = document.querySelector('elevenlabs-convai');
-        if (w) {{
-          w.setAttribute('expand', 'true');
-          w.dispatchEvent(new Event('click'));
-        }}
-      }}, 1000);
-      setTimeout(function() {{
+      function tryExpand() {{
         var w = document.querySelector('elevenlabs-convai');
         if (w) w.setAttribute('expand', 'true');
-      }}, 3000);
+      }}
+      setTimeout(tryExpand, 500);
+      setTimeout(tryExpand, 1500);
+      setTimeout(tryExpand, 3000);
     }});
   </script>
 </body>
 </html>
 """
-st.components.v1.html(widget_html, height=540, scrolling=True)
-
-st.markdown("</div>", unsafe_allow_html=True)
+st.components.v1.html(widget_html, height=560, scrolling=True)
 
 # ===== HOW TO USE =====
 st.markdown("""
@@ -256,7 +200,7 @@ st.markdown("""
         <div class="how-to-col">
             <h4>🎙️ Voice Call</h4>
             <p class="ltr">
-                1. Click the red button above<br>
+                1. Click the microphone button<br>
                 2. Allow microphone access<br>
                 3. Speak in Egyptian Arabic<br>
                 4. Agent responds with voice
@@ -265,8 +209,8 @@ st.markdown("""
         <div class="how-to-col">
             <h4>💬 Text Chat</h4>
             <p class="rtl">
-                ١. اضغط الزر الأحمر فوق<br>
-                ٢. اكتب رسالتك في صندوق النص<br>
+                ١. اكتب رسالتك في صندوق النص<br>
+                ٢. اضغط Enter أو زر الإرسال<br>
                 ٣. الأجنت هيرد عليك فوراً<br>
                 ٤. تقدر تكتب بالعربي أو الإنجليزي
             </p>
