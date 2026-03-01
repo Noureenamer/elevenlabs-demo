@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title=" | Smart Support",
+    page_title="خدمة العملاءا | Smart Support",
     page_icon="🎯",
     layout="centered"
 )
@@ -11,29 +11,30 @@ AGENT_ID = "agent_5401kj0w72jgfq5sed8kv93cqmzz"
 st.markdown("""
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    .stApp { background: #050810; font-family: 'Syne', sans-serif; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    .stApp { background:#050810; font-family:'Syne',sans-serif; }
     .stApp::before {
-        content: ''; position: fixed; top:-50%; left:-50%; width:200%; height:200%;
+        content:''; position:fixed; top:-50%; left:-50%; width:200%; height:200%;
         background:
             radial-gradient(ellipse at 20% 20%, rgba(255,60,100,0.12) 0%, transparent 50%),
             radial-gradient(ellipse at 80% 80%, rgba(60,100,255,0.10) 0%, transparent 50%);
-        animation: bgShift 8s ease-in-out infinite alternate;
-        pointer-events: none; z-index: 0;
+        animation:bgShift 8s ease-in-out infinite alternate;
+        pointer-events:none; z-index:0;
     }
     @keyframes bgShift {
-        0%   { transform: translate(0,0) rotate(0deg); }
-        100% { transform: translate(2%,2%) rotate(3deg); }
+        0%   { transform:translate(0,0) rotate(0deg); }
+        100% { transform:translate(2%,2%) rotate(3deg); }
     }
     .stApp::after {
-        content: ''; position: fixed; inset: 0;
+        content:''; position:fixed; inset:0;
         background-image:
             linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
             linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-        background-size: 50px 50px; pointer-events: none; z-index: 0;
+        background-size:50px 50px; pointer-events:none; z-index:0;
     }
-    .block-container { position:relative; z-index:1; padding:2rem 1rem 4rem; max-width:860px !important; }
-    .header-wrap { text-align:center; padding:60px 20px 40px; }
+    .block-container { position:relative; z-index:1; padding:2rem 1rem 4rem; max-width:900px !important; }
+
+    .header-wrap { text-align:center; padding:50px 20px 30px; }
     .header-eyebrow {
         display:inline-flex; align-items:center; gap:8px;
         background:rgba(255,60,100,0.1); border:1px solid rgba(255,60,100,0.3);
@@ -65,6 +66,7 @@ st.markdown("""
     .badge-blue   { background:rgba(60,130,255,0.15);  border:1px solid rgba(60,130,255,0.35);  color:#6b9eff; }
     .badge-orange { background:rgba(255,150,60,0.15);  border:1px solid rgba(255,150,60,0.35);  color:#ffb06b; }
     .badge-green  { background:rgba(60,255,150,0.15);  border:1px solid rgba(60,255,150,0.35);  color:#6bffb0; }
+
     .features-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:30px 0; }
     .feature-card {
         background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07);
@@ -82,7 +84,13 @@ st.markdown("""
     .feature-desc  { color:rgba(255,255,255,0.4); font-size:0.82em; line-height:1.5; font-family:'Tajawal',sans-serif; }
     .fc-red    { --accent:#ff3c64; } .fc-blue  { --accent:#3c82ff; }
     .fc-orange { --accent:#ff963c; } .fc-green { --accent:#3cff8a; }
-    hr { border-color:rgba(255,255,255,0.06) !important; margin:30px 0 !important; }
+
+    .section-label {
+        color:rgba(255,255,255,0.35); font-size:0.75em; font-weight:700;
+        letter-spacing:2px; text-transform:uppercase; text-align:center;
+        margin:10px 0 16px;
+    }
+
     .how-to {
         background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06);
         border-radius:16px; padding:24px; margin-top:20px;
@@ -93,6 +101,8 @@ st.markdown("""
     .how-to-col p { color:rgba(255,255,255,0.3); font-size:0.82em; line-height:1.9; font-family:'Tajawal',sans-serif; }
     .rtl { direction:rtl; text-align:right; }
     .ltr { direction:ltr; text-align:left; font-family:'Syne',sans-serif !important; }
+
+    hr { border-color:rgba(255,255,255,0.06) !important; margin:30px 0 !important; }
     .footer {
         text-align:center; color:rgba(255,255,255,0.12); font-size:0.75em;
         margin-top:50px; padding-top:20px;
@@ -109,12 +119,12 @@ st.markdown("""
 <div class="header-wrap">
     <div class="header-eyebrow"><div class="pulse-dot"></div>LIVE · AI AGENT ONLINE</div>
     <div class="header-title">Smart Customer<br><span>Support Center</span></div>
-    <div class="header-arabic">مركز خدمة العملاء ا</div>
+    <div class="header-arabic">مركز خدمة العملاء =</div>
     <p class="header-desc">AI-powered agent for returns, orders, and customer registration — available 24/7 in Egyptian Arabic</p>
     <div class="badges">
         <span class="badge badge-red">🇪🇬 Egyptian Arabic</span>
         <span class="badge badge-blue">⚡ 24/7 Available</span>
-        
+        <span class="badge badge-orange">🤖 ElevenLabs AI</span>
         <span class="badge badge-green">✅ Live</span>
     </div>
 </div>
@@ -147,50 +157,95 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("---")
+st.markdown('<div class="section-label">🎙️ Voice &nbsp;·&nbsp; 💬 Text Chat &nbsp;·&nbsp; Both Powered by Your Real Agent</div>', unsafe_allow_html=True)
 
-# ===== WIDGET =====
+# ===== FULL EXPANDED WIDGET =====
+# The widget handles BOTH voice and text natively
+# Text input box appears inside the widget after clicking Start
 widget_html = f"""
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <style>
-  body {{
-    margin: 0;
-    padding: 20px 0;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 520px;
+  * {{ margin:0; padding:0; box-sizing:border-box; }}
+  html, body {{
+    width:100%;
+    height:100%;
+    background:transparent;
+    overflow:hidden;
+  }}
+  .widget-wrapper {{
+    width:100%;
+    height:700px;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:10px 0;
   }}
   elevenlabs-convai {{
-    width: 100%;
-    max-width: 640px;
+    --widget-width: 100%;
+    width: 100% !important;
+    max-width: 800px;
+    height: 680px !important;
+    display: block !important;
   }}
 </style>
 </head>
 <body>
+<div class="widget-wrapper">
   <elevenlabs-convai
     agent-id="{AGENT_ID}"
-    expand="true">
+    expand="true"
+    expandedbydefault="true">
   </elevenlabs-convai>
-  <script src="https://elevenlabs.io/convai-widget/index.js" async></script>
-  <script>
-    window.addEventListener('load', function() {{
-      function tryExpand() {{
-        var w = document.querySelector('elevenlabs-convai');
-        if (w) w.setAttribute('expand', 'true');
-      }}
-      setTimeout(tryExpand, 500);
-      setTimeout(tryExpand, 1500);
-      setTimeout(tryExpand, 3000);
+</div>
+
+<script src="https://elevenlabs.io/convai-widget/index.js" async></script>
+
+<script>
+  // Force expand at multiple intervals
+  function forceExpand() {{
+    var widget = document.querySelector('elevenlabs-convai');
+    if (widget) {{
+      widget.setAttribute('expand', 'true');
+      widget.setAttribute('expandedbydefault', 'true');
+      // Try to access shadow DOM to click expand button if collapsed
+      try {{
+        var shadow = widget.shadowRoot;
+        if (shadow) {{
+          var btn = shadow.querySelector('[data-testid="expand-button"], button[aria-label*="expand"], .expand-btn');
+          if (btn) btn.click();
+        }}
+      }} catch(e) {{}}
+    }}
+  }}
+
+  // Run immediately and at intervals
+  document.addEventListener('DOMContentLoaded', forceExpand);
+  setTimeout(forceExpand, 300);
+  setTimeout(forceExpand, 800);
+  setTimeout(forceExpand, 1500);
+  setTimeout(forceExpand, 3000);
+  setTimeout(forceExpand, 5000);
+
+  // Also watch for widget to be added to DOM
+  var observer = new MutationObserver(function(mutations) {{
+    mutations.forEach(function(m) {{
+      m.addedNodes.forEach(function(n) {{
+        if (n.tagName === 'ELEVENLABS-CONVAI' || (n.querySelector && n.querySelector('elevenlabs-convai'))) {{
+          setTimeout(forceExpand, 200);
+        }}
+      }});
     }});
-  </script>
+  }});
+  observer.observe(document.body, {{ childList:true, subtree:true }});
+</script>
 </body>
 </html>
 """
-st.components.v1.html(widget_html, height=560, scrolling=True)
+
+st.components.v1.html(widget_html, height=720, scrolling=False)
 
 # ===== HOW TO USE =====
 st.markdown("""
@@ -200,7 +255,7 @@ st.markdown("""
         <div class="how-to-col">
             <h4>🎙️ Voice Call</h4>
             <p class="ltr">
-                1. Click the microphone button<br>
+                1. Click <b>"Start a call"</b> button<br>
                 2. Allow microphone access<br>
                 3. Speak in Egyptian Arabic<br>
                 4. Agent responds with voice
@@ -209,10 +264,10 @@ st.markdown("""
         <div class="how-to-col">
             <h4>💬 Text Chat</h4>
             <p class="rtl">
-                ١. اكتب رسالتك في صندوق النص<br>
-                ٢. اضغط Enter أو زر الإرسال<br>
-                ٣. الأجنت هيرد عليك فوراً<br>
-                ٤. تقدر تكتب بالعربي أو الإنجليزي
+                ١. اضغط <b>"Start a call"</b><br>
+                ٢. بعد ما يفتح — ابحث عن صندوق النص في الأسفل<br>
+                ٣. اكتب رسالتك واضغط Enter<br>
+                ٤. الأجنت هيرد عليك فوراً بنفس الذكاء
             </p>
         </div>
     </div>
