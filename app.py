@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="خدمة العملاء الذكية | Smart Support",
+    page_title=" | Smart Support",
     page_icon="🎯",
     layout="centered"
 )
@@ -109,12 +109,12 @@ st.markdown("""
 <div class="header-wrap">
     <div class="header-eyebrow"><div class="pulse-dot"></div>LIVE · AI AGENT ONLINE</div>
     <div class="header-title">Smart Customer<br><span>Support Center</span></div>
-    <div class="header-arabic">مركز خدمة العملاء الذكي</div>
+    <div class="header-arabic">مركز خدمة العملاء ا</div>
     <p class="header-desc">AI-powered agent for returns, orders, and customer registration — available 24/7 in Egyptian Arabic</p>
     <div class="badges">
         <span class="badge badge-red">🇪🇬 Egyptian Arabic</span>
         <span class="badge badge-blue">⚡ 24/7 Available</span>
-        <span class="badge badge-orange">🤖 ElevenLabs AI</span>
+        
         <span class="badge badge-green">✅ Live</span>
     </div>
 </div>
