@@ -1,4 +1,3 @@
-# Smart Support App
 import streamlit as st
 
 st.set_page_config(
@@ -35,12 +34,10 @@ st.markdown("""
     color: var(--ink);
 }
 
-/* Subtle paper texture overlay */
 .stApp::before {
     content:'';
     position:fixed;
     inset:0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
     pointer-events:none;
     z-index:0;
     opacity:0.6;
@@ -53,7 +50,6 @@ st.markdown("""
     max-width: 860px !important;
 }
 
-/* ── MASTHEAD ── */
 .masthead {
     border-bottom: 1px solid var(--border);
     padding: 18px 0 14px;
@@ -89,7 +85,6 @@ st.markdown("""
     50% { opacity:0.25; }
 }
 
-/* ── HERO ── */
 .hero {
     padding: 70px 0 50px;
     display: grid;
@@ -98,7 +93,6 @@ st.markdown("""
     align-items: end;
     border-bottom: 1px solid var(--border);
 }
-.hero-left {}
 .hero-eyebrow {
     font-size: 0.72em;
     font-weight: 600;
@@ -151,7 +145,6 @@ st.markdown("""
     text-transform: uppercase;
 }
 
-/* ── PILLS ── */
 .pills {
     display: flex;
     gap: 8px;
@@ -172,7 +165,6 @@ st.markdown("""
 .pill-sage   { color: var(--sage);  border-color: var(--sage);  background: rgba(90,122,94,0.06); }
 .pill-muted  { color: var(--muted); border-color: var(--border); background: rgba(0,0,0,0.02); }
 
-/* ── FEATURE STRIP ── */
 .features {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -200,7 +192,6 @@ st.markdown("""
     direction: rtl;
 }
 
-/* ── WIDGET SECTION ── */
 .widget-section {
     padding: 50px 0 0;
 }
@@ -243,9 +234,7 @@ st.markdown("""
     gap: 12px;
 }
 .wt-dots { display:flex; gap:6px; }
-.wt-dot {
-    width: 10px; height: 10px; border-radius: 50%;
-}
+.wt-dot { width: 10px; height: 10px; border-radius: 50%; }
 .wt-dot-r { background: #FF5F57; }
 .wt-dot-y { background: #FEBC2E; }
 .wt-dot-g { background: #28C840; }
@@ -265,7 +254,6 @@ st.markdown("""
     gap: 5px;
 }
 
-/* ── HOW TO ── */
 .howto {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -318,7 +306,6 @@ st.markdown("""
 .rtl-col .howto-step { flex-direction: row-reverse; }
 .rtl-col .step-t { font-family: 'Tajawal', sans-serif; font-size: 0.9em; }
 
-/* ── FOOTER ── */
 .footer-strip {
     margin-top: 60px;
     padding: 28px 0;
@@ -345,7 +332,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ── MASTHEAD ──
+# MASTHEAD
 st.markdown("""
 <div class="masthead">
     <div class="masthead-brand">Smart Support · مركز الدعم</div>
@@ -356,7 +343,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ── HERO ──
+# HERO
 st.markdown("""
 <div class="hero">
     <div class="hero-left">
@@ -372,7 +359,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ── PILLS ──
+# PILLS
 st.markdown("""
 <div class="pills">
     <span class="pill pill-gold">🇪🇬 Egyptian Arabic</span>
@@ -383,7 +370,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ── FEATURE STRIP ──
+# FEATURES
 st.markdown("""
 <div class="features">
     <div class="feat">
@@ -409,13 +396,13 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ── WIDGET ──
+# WIDGET
 st.markdown("""
 <div class="widget-section">
     <div class="section-header">
         <span class="section-num">01</span>
         <span class="section-title">Talk to the Agent</span>
-        <span class="section-sub">Voice & Text · العربي المصري</span>
+        <span class="section-sub">Voice &amp; Text · العربي المصري</span>
     </div>
     <div class="widget-frame">
         <div class="widget-topbar">
@@ -427,7 +414,12 @@ st.markdown("""
             <div class="wt-live-badge">● LIVE</div>
             <div class="wt-label">Smart Support Agent</div>
         </div>
+    </div>
+</div>
 """, unsafe_allow_html=True)
+
+# ELEVENLABS WIDGET
+AGENT_ID = "agent_5401kj0w72jgfq5sed8kv93cqmzz"
 
 widget_html = f"""
 <!DOCTYPE html>
@@ -478,15 +470,6 @@ widget_html = f"""
   }}
   document.addEventListener('DOMContentLoaded', forceExpand);
   [300, 800, 1500, 3000, 5000].forEach(t => setTimeout(forceExpand, t));
-  new MutationObserver(function(mutations) {{
-    mutations.forEach(function(m) {{
-      m.addedNodes.forEach(function(n) {{
-        if (n.tagName === 'ELEVENLABS-CONVAI' || (n.querySelector && n.querySelector('elevenlabs-convai'))) {{
-          setTimeout(forceExpand, 200);
-        }}
-      }});
-    }});
-  }}).observe(document.body, {{ childList:true, subtree:true }});
 </script>
 </body>
 </html>
@@ -494,9 +477,7 @@ widget_html = f"""
 
 st.components.v1.html(widget_html, height=720, scrolling=False)
 
-st.markdown("</div></div>", unsafe_allow_html=True)
-
-# ── HOW TO USE ──
+# HOW TO USE
 st.markdown("""
 <div class="section-header" style="margin-top:50px;">
     <span class="section-num">02</span>
@@ -523,7 +504,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ── FOOTER ──
+# FOOTER
 st.markdown("""
 <div class="footer-strip">
     <div class="footer-brand">Smart Support · مركز الدعم الذكي</div>
