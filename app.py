@@ -34,7 +34,6 @@ st.markdown("""
     color: var(--ink);
 }
 
-/* Subtle paper texture overlay */
 .stApp::before {
     content:'';
     position:fixed;
@@ -52,7 +51,7 @@ st.markdown("""
     max-width: 860px !important;
 }
 
-/* ── MASTHEAD ── */
+/* MASTHEAD */
 .masthead {
     border-bottom: 1px solid var(--border);
     padding: 18px 0 14px;
@@ -88,7 +87,7 @@ st.markdown("""
     50% { opacity:0.25; }
 }
 
-/* ── HERO ── */
+/* HERO */
 .hero {
     padding: 70px 0 50px;
     display: grid;
@@ -97,7 +96,6 @@ st.markdown("""
     align-items: end;
     border-bottom: 1px solid var(--border);
 }
-.hero-left {}
 .hero-eyebrow {
     font-size: 0.72em;
     font-weight: 600;
@@ -150,7 +148,7 @@ st.markdown("""
     text-transform: uppercase;
 }
 
-/* ── PILLS ── */
+/* PILLS */
 .pills {
     display: flex;
     gap: 8px;
@@ -171,7 +169,7 @@ st.markdown("""
 .pill-sage   { color: var(--sage);  border-color: var(--sage);  background: rgba(90,122,94,0.06); }
 .pill-muted  { color: var(--muted); border-color: var(--border); background: rgba(0,0,0,0.02); }
 
-/* ── FEATURE STRIP ── */
+/* FEATURE STRIP */
 .features {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -199,7 +197,7 @@ st.markdown("""
     direction: rtl;
 }
 
-/* ── WIDGET SECTION ── */
+/* WIDGET SECTION */
 .widget-section {
     padding: 50px 0 0;
 }
@@ -264,7 +262,7 @@ st.markdown("""
     gap: 5px;
 }
 
-/* ── HOW TO ── */
+/* HOW TO */
 .howto {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -317,7 +315,7 @@ st.markdown("""
 .rtl-col .howto-step { flex-direction: row-reverse; }
 .rtl-col .step-t { font-family: 'Tajawal', sans-serif; font-size: 0.9em; }
 
-/* ── FOOTER ── */
+/* FOOTER */
 .footer-strip {
     margin-top: 60px;
     padding: 28px 0;
@@ -408,13 +406,13 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ── WIDGET ──
+# ── WIDGET SECTION HEADER ──
 st.markdown("""
 <div class="widget-section">
     <div class="section-header">
         <span class="section-num">01</span>
         <span class="section-title">Talk to the Agent</span>
-        <span class="section-sub">Voice & Text · العربي المصري</span>
+        <span class="section-sub">Voice &amp; Text · العربي المصري</span>
     </div>
     <div class="widget-frame">
         <div class="widget-topbar">
@@ -426,8 +424,11 @@ st.markdown("""
             <div class="wt-live-badge">● LIVE</div>
             <div class="wt-label">Smart Support Agent</div>
         </div>
+    </div>
+</div>
 """, unsafe_allow_html=True)
 
+# ── ELEVENLABS WIDGET ──
 widget_html = f"""
 <!DOCTYPE html>
 <html>
@@ -492,8 +493,6 @@ widget_html = f"""
 """
 
 st.components.v1.html(widget_html, height=720, scrolling=False)
-
-st.markdown("</div></div>", unsafe_allow_html=True)
 
 # ── HOW TO USE ──
 st.markdown("""
