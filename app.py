@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="خدمة العملاءا | Smart Support",
+    page_title="خدمة العملاء | Smart Support",
     page_icon="🎯",
     layout="centered"
 )
@@ -9,159 +9,425 @@ st.set_page_config(
 AGENT_ID = "agent_5401kj0w72jgfq5sed8kv93cqmzz"
 
 st.markdown("""
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
 <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    .stApp { background:#050810; font-family:'Syne',sans-serif; }
-    .stApp::before {
-        content:''; position:fixed; top:-50%; left:-50%; width:200%; height:200%;
-        background:
-            radial-gradient(ellipse at 20% 20%, rgba(255,60,100,0.12) 0%, transparent 50%),
-            radial-gradient(ellipse at 80% 80%, rgba(60,100,255,0.10) 0%, transparent 50%);
-        animation:bgShift 8s ease-in-out infinite alternate;
-        pointer-events:none; z-index:0;
-    }
-    @keyframes bgShift {
-        0%   { transform:translate(0,0) rotate(0deg); }
-        100% { transform:translate(2%,2%) rotate(3deg); }
-    }
-    .stApp::after {
-        content:''; position:fixed; inset:0;
-        background-image:
-            linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-        background-size:50px 50px; pointer-events:none; z-index:0;
-    }
-    .block-container { position:relative; z-index:1; padding:2rem 1rem 4rem; max-width:900px !important; }
+:root {
+    --cream: #F5F0E8;
+    --warm-white: #FDFAF4;
+    --charcoal: #1A1814;
+    --ink: #2D2926;
+    --gold: #C9973A;
+    --gold-light: #E8C475;
+    --gold-pale: #F7EDD5;
+    --rust: #C45C2E;
+    --sage: #5A7A5E;
+    --muted: #8C8479;
+    --border: rgba(90,75,55,0.12);
+    --shadow: rgba(26,24,20,0.08);
+}
 
-    .header-wrap { text-align:center; padding:50px 20px 30px; }
-    .header-eyebrow {
-        display:inline-flex; align-items:center; gap:8px;
-        background:rgba(255,60,100,0.1); border:1px solid rgba(255,60,100,0.3);
-        color:#ff3c64; padding:6px 18px; border-radius:100px;
-        font-size:0.75em; font-weight:700; letter-spacing:2px;
-        text-transform:uppercase; margin-bottom:24px;
-    }
-    .pulse-dot { width:7px; height:7px; background:#ff3c64; border-radius:50%; animation:pulseDot 1.4s infinite; }
-    @keyframes pulseDot {
-        0%,100% { opacity:1; transform:scale(1); }
-        50%      { opacity:0.4; transform:scale(0.7); }
-    }
-    .header-title {
-        font-family:'Syne',sans-serif; font-size:clamp(2.2em,6vw,3.8em); font-weight:800;
-        color:#ffffff; line-height:1.1; margin-bottom:8px; letter-spacing:-1px;
-    }
-    .header-title span {
-        background:linear-gradient(135deg,#ff3c64,#ff8c42);
-        -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-    }
-    .header-arabic {
-        font-family:'Tajawal',sans-serif; font-size:clamp(1.1em,3vw,1.6em); font-weight:700;
-        color:rgba(255,255,255,0.5); margin-bottom:20px; direction:rtl;
-    }
-    .header-desc { color:rgba(255,255,255,0.45); font-size:0.95em; max-width:500px; margin:0 auto 30px; line-height:1.6; }
-    .badges { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
-    .badge { padding:6px 16px; border-radius:100px; font-size:0.78em; font-weight:700; }
-    .badge-red    { background:rgba(255,60,100,0.15);  border:1px solid rgba(255,60,100,0.35);  color:#ff6b85; }
-    .badge-blue   { background:rgba(60,130,255,0.15);  border:1px solid rgba(60,130,255,0.35);  color:#6b9eff; }
-    .badge-orange { background:rgba(255,150,60,0.15);  border:1px solid rgba(255,150,60,0.35);  color:#ffb06b; }
-    .badge-green  { background:rgba(60,255,150,0.15);  border:1px solid rgba(60,255,150,0.35);  color:#6bffb0; }
+* { margin:0; padding:0; box-sizing:border-box; }
 
-    .features-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:30px 0; }
-    .feature-card {
-        background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07);
-        border-radius:16px; padding:22px; transition:all 0.3s; position:relative; overflow:hidden;
-    }
-    .feature-card::before {
-        content:''; position:absolute; top:0; left:0; right:0; height:2px;
-        background:linear-gradient(90deg,transparent,var(--accent),transparent);
-        opacity:0; transition:opacity 0.3s;
-    }
-    .feature-card:hover { background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.15); transform:translateY(-2px); }
-    .feature-card:hover::before { opacity:1; }
-    .feature-icon  { font-size:1.8em; margin-bottom:10px; }
-    .feature-title { color:#fff; font-weight:700; font-size:0.95em; margin-bottom:6px; }
-    .feature-desc  { color:rgba(255,255,255,0.4); font-size:0.82em; line-height:1.5; font-family:'Tajawal',sans-serif; }
-    .fc-red    { --accent:#ff3c64; } .fc-blue  { --accent:#3c82ff; }
-    .fc-orange { --accent:#ff963c; } .fc-green { --accent:#3cff8a; }
+.stApp {
+    background: var(--warm-white);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+}
 
-    .section-label {
-        color:rgba(255,255,255,0.35); font-size:0.75em; font-weight:700;
-        letter-spacing:2px; text-transform:uppercase; text-align:center;
-        margin:10px 0 16px;
-    }
+/* Subtle paper texture overlay */
+.stApp::before {
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events:none;
+    z-index:0;
+    opacity:0.6;
+}
 
-    .how-to {
-        background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06);
-        border-radius:16px; padding:24px; margin-top:20px;
-    }
-    .how-to-title { color:rgba(255,255,255,0.4); font-size:0.75em; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:16px; }
-    .how-to-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-    .how-to-col h4 { color:rgba(255,255,255,0.6); font-size:0.85em; margin-bottom:10px; }
-    .how-to-col p { color:rgba(255,255,255,0.3); font-size:0.82em; line-height:1.9; font-family:'Tajawal',sans-serif; }
-    .rtl { direction:rtl; text-align:right; }
-    .ltr { direction:ltr; text-align:left; font-family:'Syne',sans-serif !important; }
+.block-container {
+    position:relative;
+    z-index:1;
+    padding: 0 1rem 4rem;
+    max-width: 860px !important;
+}
 
-    hr { border-color:rgba(255,255,255,0.06) !important; margin:30px 0 !important; }
-    .footer {
-        text-align:center; color:rgba(255,255,255,0.12); font-size:0.75em;
-        margin-top:50px; padding-top:20px;
-        border-top:1px solid rgba(255,255,255,0.05); letter-spacing:1.5px;
-    }
-    .footer span { color:#ff3c64; }
-    #MainMenu, footer, header { visibility:hidden; }
-    .stDeployButton { display:none; }
+/* ── MASTHEAD ── */
+.masthead {
+    border-bottom: 1px solid var(--border);
+    padding: 18px 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+}
+.masthead-brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05em;
+    color: var(--charcoal);
+    letter-spacing: 0.02em;
+}
+.masthead-live {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72em;
+    font-weight: 600;
+    color: var(--sage);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+.live-dot {
+    width: 7px; height: 7px;
+    background: var(--sage);
+    border-radius: 50%;
+    animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink {
+    0%,100% { opacity:1; }
+    50% { opacity:0.25; }
+}
+
+/* ── HERO ── */
+.hero {
+    padding: 70px 0 50px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: end;
+    border-bottom: 1px solid var(--border);
+}
+.hero-left {}
+.hero-eyebrow {
+    font-size: 0.72em;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+}
+.hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8em, 7vw, 5em);
+    line-height: 1.0;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+}
+.hero-title em {
+    font-style: italic;
+    color: var(--rust);
+}
+.hero-arabic {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--muted);
+    direction: rtl;
+    margin-bottom: 22px;
+    line-height: 1.5;
+}
+.hero-desc {
+    font-size: 0.92em;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 400px;
+}
+.hero-right {
+    text-align: right;
+    padding-bottom: 6px;
+}
+.hero-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 5em;
+    color: var(--gold-pale);
+    line-height: 1;
+    display: block;
+}
+.hero-number-label {
+    font-size: 0.72em;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* ── PILLS ── */
+.pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+}
+.pill {
+    padding: 7px 18px;
+    border-radius: 100px;
+    font-size: 0.78em;
+    font-weight: 500;
+    border: 1px solid;
+    font-family: 'DM Sans', sans-serif;
+}
+.pill-gold   { color: var(--gold);  border-color: var(--gold);  background: rgba(201,151,58,0.06); }
+.pill-rust   { color: var(--rust);  border-color: var(--rust);  background: rgba(196,92,46,0.06); }
+.pill-sage   { color: var(--sage);  border-color: var(--sage);  background: rgba(90,122,94,0.06); }
+.pill-muted  { color: var(--muted); border-color: var(--border); background: rgba(0,0,0,0.02); }
+
+/* ── FEATURE STRIP ── */
+.features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+}
+.feat {
+    padding: 30px 20px;
+    border-right: 1px solid var(--border);
+    transition: background 0.25s;
+}
+.feat:last-child { border-right: none; }
+.feat:hover { background: var(--gold-pale); }
+.feat-icon { font-size: 1.6em; margin-bottom: 12px; }
+.feat-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.95em;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+}
+.feat-desc {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.8em;
+    color: var(--muted);
+    line-height: 1.5;
+    direction: rtl;
+}
+
+/* ── WIDGET SECTION ── */
+.widget-section {
+    padding: 50px 0 0;
+}
+.section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 30px;
+}
+.section-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5em;
+    color: var(--gold-light);
+}
+.section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3em;
+    color: var(--charcoal);
+}
+.section-sub {
+    font-size: 0.82em;
+    color: var(--muted);
+    margin-left: auto;
+    letter-spacing: 0.5px;
+}
+
+.widget-frame {
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--cream);
+    box-shadow: 0 4px 40px var(--shadow), 0 1px 0 rgba(255,255,255,0.8) inset;
+    position: relative;
+}
+.widget-topbar {
+    background: var(--charcoal);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.wt-dots { display:flex; gap:6px; }
+.wt-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+}
+.wt-dot-r { background: #FF5F57; }
+.wt-dot-y { background: #FEBC2E; }
+.wt-dot-g { background: #28C840; }
+.wt-label {
+    font-size: 0.78em;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px;
+    margin-left: auto;
+    text-transform: uppercase;
+}
+.wt-live-badge {
+    font-size: 0.72em;
+    font-weight: 600;
+    color: #28C840;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ── HOW TO ── */
+.howto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 40px;
+}
+.howto-col {
+    background: var(--warm-white);
+    padding: 28px 26px;
+}
+.howto-col:hover { background: var(--gold-pale); transition: background 0.2s; }
+.howto-label {
+    font-size: 0.7em;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+}
+.howto-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1em;
+    color: var(--charcoal);
+    margin-bottom: 14px;
+}
+.howto-step {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+.step-n {
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.9em;
+    color: var(--gold);
+    min-width: 18px;
+    padding-top: 1px;
+}
+.step-t {
+    font-size: 0.85em;
+    color: var(--muted);
+    line-height: 1.5;
+}
+.step-t b { color: var(--ink); }
+.rtl-col { direction: rtl; text-align: right; }
+.rtl-col .howto-step { flex-direction: row-reverse; }
+.rtl-col .step-t { font-family: 'Tajawal', sans-serif; font-size: 0.9em; }
+
+/* ── FOOTER ── */
+.footer-strip {
+    margin-top: 60px;
+    padding: 28px 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer-brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.95em;
+    color: var(--muted);
+}
+.footer-meta {
+    font-size: 0.72em;
+    color: rgba(140,132,121,0.5);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+.footer-meta span { color: var(--gold); }
+
+#MainMenu, footer, header { visibility:hidden; }
+.stDeployButton { display:none; }
 </style>
 """, unsafe_allow_html=True)
 
-# ===== HEADER =====
+# ── MASTHEAD ──
 st.markdown("""
-<div class="header-wrap">
-    <div class="header-eyebrow"><div class="pulse-dot"></div>LIVE · AI AGENT ONLINE</div>
-    <div class="header-title">Smart Customer<br><span>Support Center</span></div>
-    <div class="header-arabic">مركز خدمة العملاء =</div>
-    <p class="header-desc">AI-powered agent for returns, orders, and customer registration — available 24/7 in Egyptian Arabic</p>
-    <div class="badges">
-        <span class="badge badge-red">🇪🇬 Egyptian Arabic</span>
-        <span class="badge badge-blue">⚡ 24/7 Available</span>
-        <span class="badge badge-orange">🤖 ElevenLabs AI</span>
-        <span class="badge badge-green">✅ Live</span>
+<div class="masthead">
+    <div class="masthead-brand">Smart Support · مركز الدعم</div>
+    <div class="masthead-live">
+        <div class="live-dot"></div>
+        Agent Online
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# ===== FEATURE CARDS =====
+# ── HERO ──
 st.markdown("""
-<div class="features-grid">
-    <div class="feature-card fc-red">
-        <div class="feature-icon">🔄</div>
-        <div class="feature-title">Return Requests</div>
-        <div class="feature-desc">فحص تلقائي لأهلية الإرجاع خلال 14 يوم</div>
+<div class="hero">
+    <div class="hero-left">
+        <div class="hero-eyebrow">AI-Powered Customer Service</div>
+        <div class="hero-title">Your Support,<br><em>Reimagined.</em></div>
+        <div class="hero-arabic">مساعدك الذكي — على مدار الساعة</div>
+        <p class="hero-desc">An intelligent agent that speaks Egyptian Arabic, handles returns, orders, and all your questions — instantly, 24/7.</p>
     </div>
-    <div class="feature-card fc-blue">
-        <div class="feature-icon">📦</div>
-        <div class="feature-title">Order Management</div>
-        <div class="feature-desc">متابعة الأوردرات وتسجيل طلبات جديدة</div>
-    </div>
-    <div class="feature-card fc-orange">
-        <div class="feature-icon">👤</div>
-        <div class="feature-title">New Customers</div>
-        <div class="feature-desc">تسجيل عملاء جدد وجمع بياناتهم بسهولة</div>
-    </div>
-    <div class="feature-card fc-green">
-        <div class="feature-icon">❓</div>
-        <div class="feature-title">FAQ Support</div>
-        <div class="feature-desc">إجابات فورية من قاعدة المعرفة</div>
+    <div class="hero-right">
+        <span class="hero-number">24/7</span>
+        <div class="hero-number-label">Always Available</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown("---")
-st.markdown('<div class="section-label">🎙️ Voice &nbsp;·&nbsp; 💬 Text Chat &nbsp;·&nbsp; Both Powered by Your Real Agent</div>', unsafe_allow_html=True)
+# ── PILLS ──
+st.markdown("""
+<div class="pills">
+    <span class="pill pill-gold">🇪🇬 Egyptian Arabic</span>
+    <span class="pill pill-sage">✅ Live Agent</span>
+    <span class="pill pill-rust">🎙️ Voice + Text</span>
+    <span class="pill pill-muted">🤖 ElevenLabs AI</span>
+    <span class="pill pill-muted">⚡ Instant Replies</span>
+</div>
+""", unsafe_allow_html=True)
 
-# ===== FULL EXPANDED WIDGET =====
-# The widget handles BOTH voice and text natively
-# Text input box appears inside the widget after clicking Start
+# ── FEATURE STRIP ──
+st.markdown("""
+<div class="features">
+    <div class="feat">
+        <div class="feat-icon">🔄</div>
+        <div class="feat-title">Returns</div>
+        <div class="feat-desc">طلبات الإرجاع خلال 14 يوم</div>
+    </div>
+    <div class="feat">
+        <div class="feat-icon">📦</div>
+        <div class="feat-title">Orders</div>
+        <div class="feat-desc">متابعة وإلغاء الطلبات</div>
+    </div>
+    <div class="feat">
+        <div class="feat-icon">💬</div>
+        <div class="feat-title">FAQ</div>
+        <div class="feat-desc">إجابات فورية على كل سؤال</div>
+    </div>
+    <div class="feat">
+        <div class="feat-icon">👤</div>
+        <div class="feat-title">Customers</div>
+        <div class="feat-desc">تسجيل عملاء جدد بسهولة</div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# ── WIDGET ──
+st.markdown("""
+<div class="widget-section">
+    <div class="section-header">
+        <span class="section-num">01</span>
+        <span class="section-title">Talk to the Agent</span>
+        <span class="section-sub">Voice & Text · العربي المصري</span>
+    </div>
+    <div class="widget-frame">
+        <div class="widget-topbar">
+            <div class="wt-dots">
+                <div class="wt-dot wt-dot-r"></div>
+                <div class="wt-dot wt-dot-y"></div>
+                <div class="wt-dot wt-dot-g"></div>
+            </div>
+            <div class="wt-live-badge">● LIVE</div>
+            <div class="wt-label">Smart Support Agent</div>
+        </div>
+""", unsafe_allow_html=True)
+
 widget_html = f"""
 <!DOCTYPE html>
 <html>
@@ -169,19 +435,12 @@ widget_html = f"""
 <meta charset="UTF-8">
 <style>
   * {{ margin:0; padding:0; box-sizing:border-box; }}
-  html, body {{
-    width:100%;
-    height:100%;
-    background:transparent;
-    overflow:hidden;
-  }}
+  html, body {{ width:100%; height:100%; background:transparent; overflow:hidden; }}
   .widget-wrapper {{
-    width:100%;
-    height:700px;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
+    width:100%; height:700px;
+    display:flex; justify-content:center; align-items:flex-start;
     padding:10px 0;
+    background: #F5F0E8;
   }}
   elevenlabs-convai {{
     --widget-width: 100%;
@@ -200,17 +459,13 @@ widget_html = f"""
     expandedbydefault="true">
   </elevenlabs-convai>
 </div>
-
 <script src="https://elevenlabs.io/convai-widget/index.js" async></script>
-
 <script>
-  // Force expand at multiple intervals
   function forceExpand() {{
     var widget = document.querySelector('elevenlabs-convai');
     if (widget) {{
       widget.setAttribute('expand', 'true');
       widget.setAttribute('expandedbydefault', 'true');
-      // Try to access shadow DOM to click expand button if collapsed
       try {{
         var shadow = widget.shadowRoot;
         if (shadow) {{
@@ -220,17 +475,9 @@ widget_html = f"""
       }} catch(e) {{}}
     }}
   }}
-
-  // Run immediately and at intervals
   document.addEventListener('DOMContentLoaded', forceExpand);
-  setTimeout(forceExpand, 300);
-  setTimeout(forceExpand, 800);
-  setTimeout(forceExpand, 1500);
-  setTimeout(forceExpand, 3000);
-  setTimeout(forceExpand, 5000);
-
-  // Also watch for widget to be added to DOM
-  var observer = new MutationObserver(function(mutations) {{
+  [300, 800, 1500, 3000, 5000].forEach(t => setTimeout(forceExpand, t));
+  new MutationObserver(function(mutations) {{
     mutations.forEach(function(m) {{
       m.addedNodes.forEach(function(n) {{
         if (n.tagName === 'ELEVENLABS-CONVAI' || (n.querySelector && n.querySelector('elevenlabs-convai'))) {{
@@ -238,8 +485,7 @@ widget_html = f"""
         }}
       }});
     }});
-  }});
-  observer.observe(document.body, {{ childList:true, subtree:true }});
+  }}).observe(document.body, {{ childList:true, subtree:true }});
 </script>
 </body>
 </html>
@@ -247,36 +493,39 @@ widget_html = f"""
 
 st.components.v1.html(widget_html, height=720, scrolling=False)
 
-# ===== HOW TO USE =====
+st.markdown("</div></div>", unsafe_allow_html=True)
+
+# ── HOW TO USE ──
 st.markdown("""
-<div class="how-to">
-    <div class="how-to-title">📋 How to Use | كيفية الاستخدام</div>
-    <div class="how-to-grid">
-        <div class="how-to-col">
-            <h4>🎙️ Voice Call</h4>
-            <p class="ltr">
-                1. Click <b>"Start a call"</b> button<br>
-                2. Allow microphone access<br>
-                3. Speak in Egyptian Arabic<br>
-                4. Agent responds with voice
-            </p>
-        </div>
-        <div class="how-to-col">
-            <h4>💬 Text Chat</h4>
-            <p class="rtl">
-                ١. اضغط <b>"Start a call"</b><br>
-                ٢. بعد ما يفتح — ابحث عن صندوق النص في الأسفل<br>
-                ٣. اكتب رسالتك واضغط Enter<br>
-                ٤. الأجنت هيرد عليك فوراً بنفس الذكاء
-            </p>
-        </div>
+<div class="section-header" style="margin-top:50px;">
+    <span class="section-num">02</span>
+    <span class="section-title">How to Use</span>
+    <span class="section-sub">كيفية الاستخدام</span>
+</div>
+<div class="howto">
+    <div class="howto-col">
+        <div class="howto-label">Option A</div>
+        <div class="howto-heading">🎙️ Voice Call</div>
+        <div class="howto-step"><span class="step-n">1.</span><span class="step-t">Click <b>"Start a call"</b> button above</span></div>
+        <div class="howto-step"><span class="step-n">2.</span><span class="step-t">Allow <b>microphone</b> access when prompted</span></div>
+        <div class="howto-step"><span class="step-n">3.</span><span class="step-t">Speak naturally in <b>Egyptian Arabic</b></span></div>
+        <div class="howto-step"><span class="step-n">4.</span><span class="step-t">Agent replies with <b>voice instantly</b></span></div>
+    </div>
+    <div class="howto-col rtl-col">
+        <div class="howto-label">Option B — الخيار الثاني</div>
+        <div class="howto-heading">💬 محادثة نصية</div>
+        <div class="howto-step"><span class="step-n">١.</span><span class="step-t">اضغط <b>"Start a call"</b> في الأعلى</span></div>
+        <div class="howto-step"><span class="step-n">٢.</span><span class="step-t">دور على <b>صندوق النص</b> في الأسفل</span></div>
+        <div class="howto-step"><span class="step-n">٣.</span><span class="step-t">اكتب رسالتك واضغط <b>Enter</b></span></div>
+        <div class="howto-step"><span class="step-n">٤.</span><span class="step-t">الأجنت هيرد عليك <b>فوراً بالعربي</b></span></div>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# ===== FOOTER =====
+# ── FOOTER ──
 st.markdown("""
-<div class="footer">
-    POWERED BY <span>ELEVENLABS AI</span> &nbsp;·&nbsp; BUILT FOR EGYPTIAN E-COMMERCE &nbsp;·&nbsp; VERSION 3.0
+<div class="footer-strip">
+    <div class="footer-brand">Smart Support · مركز الدعم الذكي</div>
+    <div class="footer-meta">Powered by <span>ElevenLabs AI</span> · v4.0</div>
 </div>
 """, unsafe_allow_html=True)
